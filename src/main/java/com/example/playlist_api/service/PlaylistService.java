@@ -24,7 +24,7 @@ public class PlaylistService {
         return playlistRepository.findAll();
     }
 
-    public Playlist getPlaylistById(String name) {
+    public Playlist getPlaylistByName(String name) {
         return playlistRepository.findByName(name).orElseThrow(() -> new RuntimeException("Playlist no encontrada"));
     }
 
