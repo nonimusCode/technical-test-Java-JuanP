@@ -19,14 +19,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf(csrf -> csrf.disable()) // Deshabilitamos CSRF para la API REST
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/lists/**").authenticated()
                         .anyRequest().authenticated())
                 .httpBasic()
                 .and()
-                .headers(headers -> headers.frameOptions().disable()); // Para H2 Console
+                .headers(headers -> headers.frameOptions().disable());
 
         return http.build();
     }

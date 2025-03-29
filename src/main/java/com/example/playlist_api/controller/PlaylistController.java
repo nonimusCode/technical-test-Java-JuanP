@@ -84,9 +84,9 @@ public class PlaylistController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<Playlist> getPlaylistByName(@PathVariable String name) {
+    public ResponseEntity<Playlist> getlistByName(@PathVariable String name) {
         try {
-            return ResponseEntity.ok(playlistService.getPlaylistByName(name));
+            return ResponseEntity.ok(playlistService.getlistByName(name));
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

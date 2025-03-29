@@ -20,17 +20,14 @@ public class PlaylistMapper {
 
         Playlist playlist = new Playlist();
 
-        // Validar el nombre
         if (dto.getNombre() == null || dto.getNombre().trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre de la playlist es obligatorio");
         }
 
-        // Validar la descripción
         if (dto.getDescripcion() == null || dto.getDescripcion().trim().isEmpty()) {
             throw new IllegalArgumentException("La descripción de la playlist es obligatoria");
         }
 
-        // Validar la lista de canciones
         if (dto.getCanciones() == null || dto.getCanciones().isEmpty()) {
             throw new IllegalArgumentException("La playlist debe tener al menos una canción");
         }
@@ -74,12 +71,10 @@ public class PlaylistMapper {
 
         Song song = new Song();
 
-        // Validar título
         if (dto.getTitulo() == null || dto.getTitulo().trim().isEmpty()) {
             throw new IllegalArgumentException("El título de la canción es obligatorio");
         }
 
-        // Validar artista
         if (dto.getArtista() == null || dto.getArtista().trim().isEmpty()) {
             throw new IllegalArgumentException("El artista de la canción es obligatorio");
         }
@@ -88,14 +83,12 @@ public class PlaylistMapper {
         song.setArtist(dto.getArtista());
         song.setAlbum(dto.getAlbum());
 
-        // Usar el año directamente como Integer
         if (dto.getAnno() != null) {
             if (dto.getAnno() < 1900 || dto.getAnno() > 2100) {
                 throw new IllegalArgumentException("El año debe estar entre 1900 y 2100");
             }
             song.setYear(dto.getAnno());
         } else {
-            // Valor por defecto si es nulo
             song.setYear(0);
         }
 

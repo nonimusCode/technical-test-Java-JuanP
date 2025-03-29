@@ -17,9 +17,17 @@ public class PlaylistService {
     }
 
     public Playlist createPlaylist(Playlist playlist) {
+        String name = playlist.getName();
+        System.out.println("Nombre de la playlist: " + name);
         if (playlist.getName() == null || playlist.getName().isEmpty()) {
             throw new IllegalArgumentException("El nombre de la playlist es requerido");
         }
+
+        if (playlistRepository.findByName(name).isPresent()) {
+            throw new IllegalArgumentException(
+                    "Ya existe una playlist con el nombre '" + name + "'. El nombre debe ser único.");
+        }
+
         return playlistRepository.save(playlist);
     }
 
@@ -27,7 +35,7 @@ public class PlaylistService {
         return playlistRepository.findAll();
     }
 
-    public Playlist getPlaylistByName(String name) {
+    public Playlist getlistByName(String name) {
         return playlistRepository.findByName(name).orElseThrow(() -> new RuntimeException("Playlist no encontrada"));
     }
 
