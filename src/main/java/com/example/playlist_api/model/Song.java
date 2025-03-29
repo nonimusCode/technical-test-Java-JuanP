@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Data
@@ -17,10 +18,18 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonProperty("titulo")
     private String title;
-    private String artist;
-    private String album;
-    private int year;
-    private String genre;
 
+    @JsonProperty("artista")
+    private String artist;
+
+    @JsonProperty("album")
+    private String album;
+
+    @JsonProperty("anno")
+    private int year;
+
+    @JsonProperty("genero")
+    private String genre;
 }

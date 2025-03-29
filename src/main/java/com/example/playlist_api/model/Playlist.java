@@ -12,6 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Data
@@ -24,11 +25,14 @@ public class Playlist {
     private Long id;
 
     @Column(nullable = false, unique = true)
+    @JsonProperty("nombre")
     private String name;
 
+    @JsonProperty("descripcion")
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonProperty("canciones")
     private List<Song> songs;
 
 }

@@ -2,9 +2,12 @@ package com.example.playlist_api.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.example.playlist_api.model.Playlist;
 import com.example.playlist_api.repository.PlaylistRepository;
 
+@Service
 public class PlaylistService {
 
     private final PlaylistRepository playlistRepository;
@@ -29,7 +32,9 @@ public class PlaylistService {
     }
 
     public void deletePlaylistByName(String name) {
-        playlistRepository.findByName(name).ifPresent(playlistRepository::delete);
+        Playlist playlist = playlistRepository.findByName(name)
+                .orElseThrow(() -> new RuntimeException("Playlist no encontrada"));
+        playlistRepository.delete(playlist);
     }
 
 }
