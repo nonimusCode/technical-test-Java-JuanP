@@ -81,10 +81,10 @@ class PlaylistServiceTest {
     }
 
     @Test
-    void getPlaylistByName_ExistingName_ReturnsPlaylist() {
+    void getlistByName_ExistingName_ReturnsPlaylist() {
         when(playlistRepository.findByName("Lista de prueba")).thenReturn(Optional.of(playlist));
 
-        Playlist result = playlistService.getPlaylistByName("Lista de prueba");
+        Playlist result = playlistService.getlistByName("Lista de prueba");
 
         assertNotNull(result);
         assertEquals("Lista de prueba", result.getName());
@@ -92,11 +92,11 @@ class PlaylistServiceTest {
     }
 
     @Test
-    void getPlaylistByName_NonExistingName_ThrowsException() {
+    void getlistByName_NonExistingName_ThrowsException() {
         when(playlistRepository.findByName("Inexistente")).thenReturn(Optional.empty());
 
         assertThrows(RuntimeException.class, () -> {
-            playlistService.getPlaylistByName("Inexistente");
+            playlistService.getlistByName("Inexistente");
         });
 
         verify(playlistRepository, times(1)).findByName("Inexistente");
