@@ -1,5 +1,6 @@
 package com.example.playlist_api.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +29,7 @@ public class Song {
     private String album;
 
     @JsonProperty("anno")
+    @Column(name = "\"year\"")
     private int year;
 
     @JsonProperty("genero")
